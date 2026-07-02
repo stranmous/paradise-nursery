@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/paradise-nursery/static/css/main.06625093.css",
-    "main.js": "/paradise-nursery/static/js/main.a1987ed0.js",
-    "static/media/background.jpg": "/paradise-nursery/static/media/background.9a350d5328f092db1121.jpg",
-    "index.html": "/paradise-nursery/index.html",
-    "main.06625093.css.map": "/paradise-nursery/static/css/main.06625093.css.map",
-    "main.a1987ed0.js.map": "/paradise-nursery/static/js/main.a1987ed0.js.map"
+    "main.css": "/e-plantShopping/static/css/main.c64e358f.css",
+    "main.js": "/e-plantShopping/static/js/main.86174ebf.js",
+    "static/media/background.jpg": "/e-plantShopping/static/media/background.9a350d5328f092db1121.jpg",
+    "index.html": "/e-plantShopping/index.html",
+    "main.c64e358f.css.map": "/e-plantShopping/static/css/main.c64e358f.css.map",
+    "main.86174ebf.js.map": "/e-plantShopping/static/js/main.86174ebf.js.map"
   },
   "entrypoints": [
-    "static/css/main.06625093.css",
-    "static/js/main.a1987ed0.js"
+    "static/css/main.c64e358f.css",
+    "static/js/main.86174ebf.js"
   ]
 }
