@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
-import Navbar from './Navbar';
+import CartItem from './CartItem';
 
 const plantsArray = [
   { category: "Air Purifying", name: "Snake Plant", image: "/snake.jpg", price: 15 },
@@ -15,38 +15,73 @@ const plantsArray = [
 function ProductList() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  const [showCart, setShowCart] = useState(false);
+
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const handleAddToCart = (plant) => {
     dispatch(addItem(plant));
+  };
+
+  const handleCartClick = (e) => {
+    e.preventDefault();
+    setShowCart(true);
+  };
+
+  const handlePlantsClick = (e) => {
+    e.preventDefault();
+    setShowCart(false);
+  };
+
+  const handleContinueShopping = (e) => {
+    e.preventDefault();
+    setShowCart(false);
   };
 
   const categories = [...new Set(plantsArray.map(plant => plant.category))];
 
   return (
     <div>
-      <Navbar />
-      <div className="product-list">
-        {categories.map((category, index) => (
-          <div key={index}>
-            <h2>{category}</h2>
-            <div className="plant-grid">
-              {plantsArray.filter(plant => plant.category === category).map((plant, idx) => (
-                <div key={idx} className="plant-card">
-                  <img src={plant.image} alt={plant.name} width="150" />
-                  <h3>{plant.name}</h3>
-                  <p>${plant.price}</p>
-                  <button
-                    onClick={() => handleAddToCart(plant)}
-                    disabled={cartItems.some(item => item.name === plant.name)}
-                  >
-                    {cartItems.some(item => item.name === plant.name) ? "Added to Cart" : "Add to Cart"}
-                  </button>
-                </div>
-              ))}
+      <nav className="navbar">
+        <div className="nav-links">
+          <a href="#" onClick={handlePlantsClick}>Plants</a>
+        </div>
+        <div className="cart-icon">
+          <a href="#" onClick={handleCartClick}>
+            <span>🛒 Cart ({totalItems})</span>
+          </a>
+        </div>
+      </nav>
+
+      {showCart ? (
+        <CartItem onContinueShopping={handleContinueShopping} />
+      ) : (
+        <div className="product-list">
+          {categories.map((category, index) => (
+            <div key={index}>
+              <h2>{category}</h2>
+              <div className="plant-grid">
+                {plantsArray.filter(plant => plant.category === category).map((plant, idx) => {
+                  const isAdded = cartItems.some(item => item.name === plant.name);
+                  return (
+                    <div key={idx} className="plant-card">
+                      <img src={plant.image} alt={plant.name} width="150" />
+                      <h3>{plant.name}</h3>
+                      <p>${plant.price}</p>
+                      <button
+                        onClick={() => handleAddToCart(plant)}
+                        disabled={isAdded}
+                      >
+                        {isAdded ? "Added to Cart" : "Add to Cart"}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

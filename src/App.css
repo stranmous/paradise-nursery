@@ -3,8 +3,13 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.landing-page {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./background.jpg');
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.background-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -54,6 +59,11 @@ body {
   text-decoration: none;
   margin-right: 20px;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
 }
 
 .product-list, .cart-container {
@@ -67,14 +77,44 @@ body {
   margin-bottom: 40px;
 }
 
-.plant-card, .cart-item {
+.plant-card {
   border: 1px solid #ccc;
   padding: 20px;
   text-align: center;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.plant-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.plant-card button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.plant-card button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
 }
 
 .cart-item {
+  border: 1px solid #ccc;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,19 +124,19 @@ body {
 .cart-controls button {
   margin: 0 10px;
   padding: 5px 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-controls button:hover {
+  background-color: #ddd;
 }
 
 .cart-actions {
   margin-top: 30px;
   display: flex;
   gap: 20px;
-}
-
-.cart-actions button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  justify-content: center;
 }
